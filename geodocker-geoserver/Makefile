@@ -20,8 +20,9 @@ dockerfile:
 
 
 .cache/${GEOMESA_DIST_TARBALL}:
-	mkdir -p .cache \
-        && cp ${HOME}/.m2/repository/org/locationtech/geomesa/geomesa-accumulo-dist_2.11/${GEOMESA_VERSION}/${GEOMESA_DIST_TARBALL} .cache
+	(mkdir -p .cache; cd .cache ; curl -L -C - -O "https://repo.locationtech.org/content/repositories/geomesa-releases/org/locationtech/geomesa/geomesa-accumulo-dist_2.11/${GEOMESA_VERSION}/geomesa-accumulo-dist_2.11-${GEOMESA_VERSION}-bin.tar.gz")
+#	mkdir -p .cache \
+#        && cp ${HOME}/.m2/repository/org/locationtech/geomesa/geomesa-accumulo-dist_2.11/${GEOMESA_VERSION}/${GEOMESA_DIST_TARBALL} .cache
 
 ${GEOMESA_ACCUMULO_GS_INSTALL}: .cache/${GEOMESA_DIST_TARBALL}
 	tar -zx --strip-components=3 \

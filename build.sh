@@ -32,4 +32,5 @@ echo "ACCUMULO_VERSION = ${ACCUMULO_VERSION}"
 echo "TAG = ${TAG}"
 
 export ACCUMULO_VERSION GEOMESA_VERSION TAG THRIFT_VERSION
-make publish
+#make publish
+make build
