@@ -1,10 +1,11 @@
 BASE := $(subst -, ,$(notdir ${CURDIR}))
 ORG  := geomesa
 REPO := $(word 2, ${BASE})
-IMG  := quay.io/${ORG}/${REPO}
-TAG := geoserver_amigo
+IMG  := geoserver_amigo
+TAG := latest
 ACCUMULO_VERSION := 1.7.3
 GEOMESA_VERSION := 1.3.2
+THRIFT_VERSION := 0.9.2
 GEOMESA_DIST_TARBALL := geomesa-accumulo-dist_2.11-${GEOMESA_VERSION}-bin.tar.gz
 GEOMESA_ACCUMULO_GS_INSTALL := geomesa-accumulo-gs-plugin_2.11-${GEOMESA_VERSION}-install.tar.gz
 
