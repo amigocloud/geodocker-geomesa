@@ -9,30 +9,30 @@ services:
           - geoserver_data_volume:/opt/tomcat/webapps/geoserver/data
           - /home/victor:/mnt
 
-    geoserver2:
-        image: geoserver_amigo
-        ports:
-          - 9092:9090
-        volumes:
-          - geoserver_data_volume:/opt/tomcat/webapps/geoserver/data
-          - /home/victor:/mnt
-
-    geoserver3:
-        image: geoserver_amigo
-        ports:
-          - 9093:9090
-        volumes:
-          - geoserver_data_volume:/opt/tomcat/webapps/geoserver/data
-          - /home/victor:/mnt
+#    geoserver2:
+#        image: geoserver_amigo
+#        ports:
+#          - 9092:9090
+#        volumes:
+#          - geoserver_data_volume:/opt/tomcat/webapps/geoserver/data
+#          - /home/victor:/mnt
+#
+#    geoserver3:
+#        image: geoserver_amigo
+#        ports:
+#          - 9093:9090
+#        volumes:
+#          - geoserver_data_volume:/opt/tomcat/webapps/geoserver/data
+#          - /home/victor:/mnt
 
     accumulo-tserver:
-        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.2
+        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.3
         command: tserver
         environment:
           HADOOP_USER_NAME: hdfs
           HADOOP_MASTER_ADDRESS: gold-1
           ZOOKEEPERS: gold-1
-          INSTANCE_NAME: accumulo3
+          INSTANCE_NAME: accumulo4
           TSERVER_XMX: 64G
           TSERVER_CACHE_DATA_SIZE: 16G
           TSERVER_CACHE_INDEX_SIZE: 16G

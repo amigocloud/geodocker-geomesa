@@ -7,7 +7,6 @@ services:
           - 9091:9090
         volumes:
           - geoserver_data_volume2:/opt/tomcat/webapps/geoserver/data
-#          - /opt/tomcat/webapps/geoserver/data
           - /home/victor:/mnt
 
 #    geoserver2:
@@ -27,25 +26,25 @@ services:
 #          - /home/victor:/mnt
 
     accumulo-master:
-      image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.2
+      image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.3
       command: master --auto-init
       environment:
         HADOOP_USER_NAME: hdfs
         HADOOP_MASTER_ADDRESS: gold-1
         ZOOKEEPERS: gold-1
-        INSTANCE_NAME: accumulo3
+        INSTANCE_NAME: accumulo4
         ACCUMULO_PASSWORD: lionstone
         MASTER_XMX: 32G
       network_mode: "host"
 
     accumulo-monitor:
-        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.2
+        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.3
         command: monitor
         environment:
           HADOOP_USER_NAME: hdfs
           HADOOP_MASTER_ADDRESS: gold-1
           ZOOKEEPERS: gold-1
-          INSTANCE_NAME: accumulo3
+          INSTANCE_NAME: accumulo4
           MONITOR_XMX: 8G
         network_mode: "host"
         ports:
@@ -54,13 +53,13 @@ services:
           - accumulo-master
 
     accumulo-tserver:
-        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.2
+        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.3
         command: tserver
         environment:
           HADOOP_USER_NAME: hdfs
           HADOOP_MASTER_ADDRESS: gold-1
           ZOOKEEPERS: gold-1
-          INSTANCE_NAME: accumulo3
+          INSTANCE_NAME: accumulo4
           TSERVER_XMX: 32G
           TSERVER_CACHE_DATA_SIZE: 10G
           TSERVER_CACHE_INDEX_SIZE: 10G
@@ -71,13 +70,13 @@ services:
           - tserver_data_volume:/opt/accumulo/lib/ext
 
     accumulo-gc:
-        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.2
+        image: quay.io/geomesa/accumulo-geomesa:geomesa-1.3.2-accumulo-1.7.3
         command: gc
         environment:
           HADOOP_USER_NAME: hdfs
           HADOOP_MASTER_ADDRESS: gold-1
           ZOOKEEPERS: gold-1
-          INSTANCE_NAME: accumulo3
+          INSTANCE_NAME: accumulo4
           GC_XMX: 16G
         network_mode: "host"
         depends_on:
