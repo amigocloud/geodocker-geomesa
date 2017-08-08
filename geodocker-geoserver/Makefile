@@ -3,7 +3,7 @@ ORG  := geomesa
 REPO := $(word 2, ${BASE})
 IMG  := geoserver_amigo
 TAG := latest
-ACCUMULO_VERSION := 1.7.3
+ACCUMULO_VERSION := 1.7.2
 GEOMESA_VERSION := 1.3.2
 THRIFT_VERSION := 0.9.2
 GEOMESA_DIST_TARBALL := geomesa-accumulo-dist_2.11-${GEOMESA_VERSION}-bin.tar.gz
@@ -11,12 +11,12 @@ GEOMESA_ACCUMULO_GS_INSTALL := geomesa-accumulo-gs-plugin_2.11-${GEOMESA_VERSION
 
 build: ${GEOMESA_ACCUMULO_GS_INSTALL} dockerfile
 	docker build \
-                --build-arg GEOMESA_VERSION=${GEOMESA_VERSION} \
-                --build-arg TAG=${TAG} \
-                --build-arg ACCUMULO_VERSION=${ACCUMULO_VERSION} \
-                --build-arg THRIFT_VERSION=${THRIFT_VERSION} \
-		-f target/Dockerfile \
-                -t ${IMG}:${TAG}	.
+        --build-arg GEOMESA_VERSION=${GEOMESA_VERSION} \
+        --build-arg TAG=${TAG} \
+        --build-arg ACCUMULO_VERSION=${ACCUMULO_VERSION} \
+        --build-arg THRIFT_VERSION=${THRIFT_VERSION} \
+        -f target/Dockerfile \
+        -t ${IMG}:${TAG} .
 
 dockerfile:
 	mkdir -p target
